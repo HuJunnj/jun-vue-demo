@@ -11,6 +11,7 @@ import {
   watch,
   onBeforeUpdate
 } from 'vue'
+import { useCounterStore } from '@/stores/counter'
 /*定义变量*/
 const count = ref(0); // 被 Proxy 代理
 const state = reactive({
@@ -28,6 +29,15 @@ const doubleCount = computed(() =>{
 watch(count, (newVal, oldVal) => {
   console.log(`count 从 ${oldVal} 变成 ${newVal}`); // 监听器 -> 依赖 Watcher
 });
+
+const counter = useCounterStore()
+
+function increment() {
+  counter.increment()
+}
+function reduce() {
+  counter.count--;
+}
 /*定义普通方法*/
 const sayHello = () => {
   console.log("Hello, Vue3!");
@@ -70,6 +80,7 @@ onUnmounted(() => {
 
 <template>
   <div>I'm B Component</div>
+  <div>pinia:{{counter.$state.count}}</div>
   <div>{{count}}</div>
   <div>{{doubleCount}}</div>
   <div>姓名：{{state.name}}</div>
@@ -77,6 +88,8 @@ onUnmounted(() => {
   <div>年龄：{{state.age}}</div>
   <button @click="addCount">增加数量+1</button>
   <button @click="reduceCount">减少数量-1</button>
+  <button @click="increment">全局状态管理+1</button>
+  <button @click="reduce">全局状态管理-1</button>
 </template>
 
 <style scoped>
