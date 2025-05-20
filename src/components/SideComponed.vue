@@ -47,6 +47,10 @@
             <el-menu-item index="1-4-2" @click="jumpRouter('/b')">component b</el-menu-item>
             <el-menu-item index="1-4-3" @click="jumpRouter('/c')">component c</el-menu-item>
           </el-sub-menu>
+          <el-sub-menu index="1-5">
+            <template #title>表格示例</template>
+            <el-menu-item index="1-5-1" @click="jumpRouter('/table')">component a</el-menu-item>
+          </el-sub-menu>
         </el-sub-menu>
         <el-menu-item index="2">
           <el-icon><icon-menu /></el-icon>
